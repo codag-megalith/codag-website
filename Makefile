@@ -1,4 +1,4 @@
-.PHONY: run open clean
+.PHONY: run open clean stop
 
 # Start local dev server
 run:
@@ -13,3 +13,7 @@ open:
 # Clean any generated files
 clean:
 	@rm -rf .DS_Store
+
+# Stop server on port 8080
+stop:
+	@lsof -ti:8080 | xargs kill -9 2>/dev/null || echo "No server running on port 8080"
