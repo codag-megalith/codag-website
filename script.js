@@ -457,3 +457,20 @@ if (window.innerWidth >= 1024) {
 
     document.querySelectorAll('section[id]').forEach(s => nodeObserver.observe(s));
 }
+
+// ============================================
+// CLI COPY TO CLIPBOARD
+// ============================================
+document.querySelectorAll('.cli-copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const code = btn.closest('.cli-block').querySelector('code').textContent;
+        navigator.clipboard.writeText(code).then(() => {
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(() => {
+                btn.textContent = 'Copy';
+                btn.classList.remove('copied');
+            }, 2000);
+        });
+    });
+});
