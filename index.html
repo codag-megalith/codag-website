@@ -457,11 +457,17 @@
 
     <!-- ==================== NAVIGATION ==================== -->
 
-    <!-- Book a Demo — fixed top-right, all screens -->
-    <a href="mailto:michael@codag.ai?subject=Codag%20Demo%20Request"
-       class="fixed top-4 right-4 md:top-6 md:right-8 z-50 btn-primary px-5 py-2.5 md:px-6 md:py-2.5 rounded-full text-white font-semibold text-sm whitespace-nowrap">
-        Book a Demo
-    </a>
+    <!-- Fixed top-right buttons -->
+    <div class="fixed top-4 right-4 md:top-6 md:right-8 z-50 flex items-center gap-3">
+        <a href="mailto:michael@codag.ai?subject=Codag%20Demo%20Request"
+           class="btn-primary px-5 py-2.5 md:px-6 md:py-2.5 rounded-full text-white font-semibold text-sm whitespace-nowrap">
+            Book a Demo
+        </a>
+        <a href="https://console.codag.ai"
+           class="px-5 py-2.5 md:px-6 md:py-2.5 rounded-full bg-white text-[#08080c] hover:bg-white/90 text-sm font-semibold whitespace-nowrap transition-colors">
+            Sign In
+        </a>
+    </div>
 
     <!-- Mobile Menu Button -->
     <button id="mobile-menu-btn" class="fixed top-4 left-4 z-50 md:hidden nav-pill rounded-full p-3">
