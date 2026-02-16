@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing — Codag</title>
+    <meta name="description" content="Codag pricing. Start free, pay as your team grows. Memory for every coding agent.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <!-- Open Graph / Link Preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Pricing — Codag">
+    <meta property="og:description" content="Codag pricing. Start free, pay as your team grows. Memory for every coding agent.">
+    <meta property="og:image" content="https://codag.ai/socialpreview.png">
+    <meta property="og:url" content="https://codag.ai/pricing">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Instrument Sans', 'sans-serif'],
+                        body: ['DM Sans', 'sans-serif'],
+                        mono: ['DM Mono', 'monospace'],
+                    },
+                    colors: {
+                        accent: '#7c5cfc',
+                        cyan: '#22d3ee',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --accent: #7c5cfc;
+            --accent-light: #9d85fd;
+            --cyan: #22d3ee;
+            --bg: #08080c;
+            --surface: rgba(124,92,252,0.03);
+            --surface-hover: rgba(124,92,252,0.06);
+            --border: rgba(255,255,255,0.08);
+            --border-hover: rgba(124,92,252,0.4);
+        }
+
+        html { background-color: var(--bg); overflow-x: clip; }
+        body { background: transparent; font-family: 'DM Sans', sans-serif; position: relative; z-index: 1; color: #e8e4e0; }
+
+        .grain {
+            position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.022;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-repeat: repeat; background-size: 256px 256px;
+        }
+
+        #circuit-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+        @media (max-width: 1023px) { #circuit-bg { display: none; } }
+
+        .font-display { font-family: 'Instrument Sans', sans-serif; }
+        .font-mono { font-family: 'DM Mono', monospace; }
+        .accent-text { color: var(--accent); }
+
+        .hero-glow {
+            position: absolute; width: 80%; height: 70%; top: 10%; left: 10%;
+            background: radial-gradient(ellipse at center, rgba(124,92,252,0.06) 0%, transparent 65%);
+            pointer-events: none; z-index: -1;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-fade-1 { animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both; }
+        .hero-fade-2 { animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both; }
+
+        .fade-in {
+            opacity: 0; transform: translateY(24px); filter: blur(4px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .fade-in.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+        .stagger > .fade-in:nth-child(1) { transition-delay: 0s; }
+        .stagger > .fade-in:nth-child(2) { transition-delay: 0.1s; }
+        .stagger > .fade-in:nth-child(3) { transition-delay: 0.2s; }
+        .stagger > .fade-in:nth-child(4) { transition-delay: 0.3s; }
+
+        .nav-pill {
+            background: rgba(8,8,12,0.75); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .section-label {
+            font-family: 'DM Mono', monospace; font-size: 1rem; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent);
+        }
+
+        .btn-primary {
+            background: var(--accent); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 0 0 0 rgba(124,92,252,0), 0 1px 2px rgba(0,0,0,0.3);
+            position: relative; overflow: hidden;
+        }
+        .btn-primary::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+            opacity: 0; transition: opacity 0.4s ease;
+        }
+        .btn-primary:hover {
+            box-shadow: 0 0 40px rgba(124,92,252,0.25), 0 0 80px rgba(124,92,252,0.1);
+            transform: translateY(-2px);
+        }
+        .btn-primary:hover::before { opacity: 1; }
+
+        .pricing-card {
+            background: var(--surface); border: 1px solid var(--border); border-radius: 1rem;
+            padding: 2rem; display: flex; flex-direction: column;
+            transition: border-color 0.5s ease, background 0.5s ease, box-shadow 0.5s ease;
+        }
+        .pricing-card:hover {
+            border-color: var(--border-hover); background: var(--surface-hover);
+            box-shadow: 0 0 60px rgba(124,92,252,0.04);
+        }
+        .pricing-card.recommended {
+            border-color: rgba(124,92,252,0.4); background: rgba(124,92,252,0.04);
+        }
+        .pricing-card.recommended:hover {
+            border-color: rgba(124,92,252,0.6); box-shadow: 0 0 80px rgba(124,92,252,0.08);
+        }
+        .pricing-feature {
+            display: flex; align-items: flex-start; gap: 0.5rem;
+            font-size: 0.875rem; color: rgba(255,255,255,0.6); line-height: 1.5;
+        }
+        .pricing-feature .check { color: var(--accent-light); flex-shrink: 0; margin-top: 0.125rem; }
+        .pricing-feature .dash { color: rgba(255,255,255,0.2); flex-shrink: 0; margin-top: 0.125rem; }
+        .pricing-badge {
+            display: inline-block; font-family: 'DM Mono', monospace; font-size: 0.7rem;
+            text-transform: uppercase; letter-spacing: 0.1em; padding: 0.2rem 0.6rem;
+            border-radius: 9999px; background: rgba(124,92,252,0.15); color: var(--accent-light);
+        }
+
+        .mobile-nav-link.active { background: rgba(255, 255, 255, 0.08); color: white; }
+    </style>
+</head>
+
+<body class="font-body text-white min-h-screen">
+    <canvas id="circuit-bg"></canvas>
+    <div class="grain"></div>
+
+    <!-- Book a Demo — fixed top-right, all screens -->
+    <a href="mailto:michael@codag.ai?subject=Codag%20Demo%20Request"
+       class="fixed top-4 right-4 md:top-6 md:right-8 z-50 btn-primary px-5 py-2.5 md:px-6 md:py-2.5 rounded-full text-white font-semibold text-sm whitespace-nowrap">
+        Book a Demo
+    </a>
+
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-btn" class="fixed top-4 left-4 z-50 md:hidden nav-pill rounded-full p-3">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+    </button>
+
+    <!-- Mobile Dropdown Menu -->
+    <nav id="mobile-menu" class="fixed top-16 left-4 z-50 hidden md:hidden">
+        <div class="nav-pill rounded-2xl p-2 min-w-[160px]">
+            <ul class="flex flex-col gap-1">
+                <li><a href="index.html#how-it-works" class="mobile-nav-link px-4 py-3 rounded-xl text-sm font-medium text-gray-400 transition-colors block">How It Works</a></li>
+                <li><a href="index.html#benchmarks" class="mobile-nav-link px-4 py-3 rounded-xl text-sm font-medium text-gray-400 transition-colors block">Benchmarks</a></li>
+                <li><a href="#" class="mobile-nav-link active px-4 py-3 rounded-xl text-sm font-medium text-gray-400 transition-colors block">Pricing</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Desktop Nav -->
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 hidden md:block">
+        <div class="nav-pill rounded-full px-3 py-3 flex items-center gap-1.5">
+            <a href="index.html" class="px-4 flex items-center">
+                <img src="codag.svg" alt="Codag" class="h-7 invert opacity-90">
+            </a>
+            <div class="w-px h-6 bg-white/[0.06] mx-1.5"></div>
+            <a href="index.html#how-it-works" class="px-5 py-2 rounded-full text-sm font-medium text-white/50 hover:text-white/80 hover:bg-white/[0.06] transition-all whitespace-nowrap">How It Works</a>
+            <a href="index.html#benchmarks" class="px-5 py-2 rounded-full text-sm font-medium text-white/50 hover:text-white/80 hover:bg-white/[0.06] transition-all">Benchmarks</a>
+            <a href="#" class="px-5 py-2 rounded-full text-sm font-medium text-white/80 bg-white/[0.06]">Pricing</a>
+        </div>
+    </nav>
+
+    <!-- Pricing -->
+    <section class="relative min-h-screen flex flex-col justify-center items-center px-6 sm:px-8 py-32 overflow-hidden">
+        <div class="hero-glow"></div>
+        <div class="w-full max-w-6xl mx-auto">
+            <p class="section-label mb-4 hero-fade-1">Pricing</p>
+            <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-bold mb-5 hero-fade-1 leading-[1.05]">
+                Simple, <span class="accent-text">transparent</span> pricing.
+            </h2>
+            <p class="text-gray-400 text-lg mb-14 max-w-xl hero-fade-2 leading-relaxed">
+                Start free. Pay as your team grows. No surprises.
+            </p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 stagger">
+
+                <!-- Free -->
+                <div class="pricing-card fade-in">
+                    <div class="mb-6">
+                        <h3 class="font-display text-lg font-semibold text-white mb-1">Free</h3>
+                        <p class="text-gray-500 text-sm">For trying it out</p>
+                    </div>
+                    <div class="mb-6">
+                        <span class="font-display text-4xl font-bold text-white">$0</span>
+                    </div>
+                    <a href="https://console.codag.ai" class="block text-center py-2.5 px-4 rounded-full text-sm font-medium border border-white/10 text-white/70 hover:text-white hover:border-white/20 transition-all mb-8">
+                        Get Started
+                    </a>
+                    <div class="space-y-3 flex-1">
+                        <div class="pricing-feature"><span class="check">&#10003;</span> 1 public repo</div>
+                        <div class="pricing-feature"><span class="check">&#10003;</span> 50 API calls / month</div>
+                        <div class="pricing-feature"><span class="check">&#10003;</span> MCP server (brief + check)</div>
+                        <div class="pricing-feature"><span class="check">&#10003;</span> Severity 3+ signals</div>
+                        <div class="pricing-feature"><span class="dash">&mdash;</span> <span style="color: rgba(255,255,255,0.3);">Console dashboard</span></div>
+                        <div class="pricing-feature"><span class="dash">&mdash;</span> <span style="color: rgba(255,255,255,0.3);">API keys</span></div>
+                        <div class="pricing-feature"><span class="dash">&mdash;</span> <span style="color: rgba(255,255,255,0.3);">Webhook auto-reindex</span></div>
+                    </div>
+                </div>
+
+                <!-- Individual (recommended) -->
+                <div class="pricing-card recommended fade-in">
+                    <div class="mb-6">
+                        <div class="flex items-center gap-2 mb-1">
+                            <h3 class="font-display text-lg font-semibold text-white">Individual</h3>
+                            <span class="pricing-badge">Popular</span>
+                        </div>
+                        <p class="text-gray-500 text-sm">For solo developers</p>
+                    </div>
+                    <div class="mb-1">
+                        <span class="font-display text-4xl font-bold text-white">$9</span>
+                        <span class="text-gray-500 text-sm">/mo</span>
+                    </div>
+                    <a href="https://console.codag.ai" class="block text-center py-2.5 px-4 rounded-full text-sm font-semibold btn-primary mb-8 mt-6">
+                        Start Trial
+                    </a>
+                    <div class="space-y-3 flex-1">
+                        <div class="pricing-feature"><span class="check">&#10003;</span> 3 repos (public + private)</div>
+                        <div class="pricing-feature"><span class="check">&#10003;</span> 1,000 API calls / month</div>
+                        <div class="pricing-feature"><span class="check">&#10003;</span> MCP server (brief + check)</div>
+                        <div class="pricing-feature"><span class="check">&#10003;</span> All severity levels (2-5)</div>
+                        <div class="pricing-feature"><span class="check">&#10003;</span> Console overview</div>
+                        <div class="pricing-feature"><span class="check">&#10003;</span> 1 API key</div>
+                        <div class="pricing-feature"><span class="check">&#10003;</span> Webhook auto-reindex</div>
+                    </div>
+                </div>
+
+                <!-- Team -->
+                <div class="pricing-card fade-in">
+                    <div class="mb-6">
+                        <h3 class="font-display text-lg font-semibold text-white mb-1">Team</h3>
+                        <p class="text-gray-500 text-sm">For engineering teams</p>
+                    </div>
+                    <div class="mb-1">
+                        <span class="font-display text-4xl font-bold text-white">$22</span>
+                        <span class="text-gray-500 text-sm">/dev/mo</span>
+                    </div>
+                    <a href="https://console.codag.ai" class="block text-center py-2.5 px-4 rounded-full text-sm font-medium border border-white/10 text-white/70 hover:text-white hover:border-white/20 transition-all mb-8 mt-6">
+                        Start Trial
+                    </a>
+                    <div class="space-y-3 flex-1">
+                        <div class="pricing-feature"><span class="check">&#10003;</span> 15 repos</div>
+                        <div class="pricing-feature"><span class="check">&#10003;</span> Unlimited API calls</div>
+                        <div class="pricing-feature"><span class="check">&#10003;</span> Up to 15 active developers</div>
+                        <div class="pricing-feature"><span class="check">&#10003;</span> All severity levels (2-5)</div>
+                        <div class="pricing-feature"><span class="check">&#10003;</span> Full console + usage analytics</div>
+                        <div class="pricing-feature"><span class="check">&#10003;</span> 10 API keys per user</div>
+                        <div class="pricing-feature"><span class="check">&#10003;</span> Organizations + RBAC</div>
+                        <div class="pricing-feature"><span class="check">&#10003;</span> Context, owners, history APIs</div>
+                    </div>
+                </div>
+
+                <!-- Enterprise -->
+                <div class="pricing-card fade-in">
+                    <div class="mb-6">
+                        <h3 class="font-display text-lg font-semibold text-white mb-1">Enterprise</h3>
+                        <p class="text-gray-500 text-sm">For large organizations</p>
+                    </div>
+                    <div class="mb-6">
+                        <span class="font-display text-4xl font-bold text-white">Custom</span>
+                    </div>
+                    <a href="mailto:michael@codag.ai?subject=Codag%20Enterprise%20Inquiry" class="block text-center py-2.5 px-4 rounded-full text-sm font-medium border border-white/10 text-white/70 hover:text-white hover:border-white/20 transition-all mb-8">
+                        Contact Us
+                    </a>
+                    <div class="space-y-3 flex-1">
+                        <div class="pricing-feature"><span class="check">&#10003;</span> Unlimited repos</div>
+                        <div class="pricing-feature"><span class="check">&#10003;</span> Unlimited API calls</div>
+                        <div class="pricing-feature"><span class="check">&#10003;</span> Unlimited developers</div>
+                        <div class="pricing-feature"><span class="check">&#10003;</span> Unlimited API keys</div>
+                        <div class="pricing-feature"><span class="check">&#10003;</span> Unlimited organizations</div>
+                        <div class="pricing-feature"><span class="check">&#10003;</span> Self-hosted option</div>
+                        <div class="pricing-feature"><span class="check">&#10003;</span> Dedicated support</div>
+                        <div class="pricing-feature"><span class="check">&#10003;</span> Custom integrations</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
